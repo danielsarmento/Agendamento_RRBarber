@@ -6,7 +6,7 @@ export default async function clientesCreate (req, res) {
     try{
         const cliente = await prisma.cliente.create({
             data: {
-                nome, email, telefone
+                nome, telefone
             }
         })
 
