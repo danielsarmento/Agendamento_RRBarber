@@ -13,6 +13,18 @@ function getFormattedDate() {
     return `${year}-${month}-${day}`;
 }
 
+function getFormattedDateISO() {
+    let date = new Date();
+    let day = date.getDate().toString().padStart(2, '0');
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let year = date.getFullYear();
+    let hora = (date.getHours()-3).toString().padStart(2, '0')
+    let min = date.getMinutes().toString().padStart(2, '0')
+    let seg = date.getSeconds().toString().padStart(2, '0')
+    
+    return `${day}/${month}/${year}`;
+}
+
 export async function agendamentoCreate (req, res) {
     const {barbeiro, telefone, horario} = req.body;
     //const horariosFuncionamento = ["10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15", "15:30", "16", "16:30", "17", "17:30", "18", "18:30"];
@@ -89,7 +101,7 @@ export async function agendamentoHorarios (req, res) {
             }
         })
 
-        res.status(200).json({ horariosDisponiveis, error: false, dia: getFormattedDate()})
+        res.status(200).json({ horariosDisponiveis, error: false, dia: getFormattedDateISO()})
 
     } catch(err){
         console.log(err)
