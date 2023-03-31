@@ -6,6 +6,8 @@ export async function agendamentoCreate (req, res) {
     //const horariosFuncionamento = ["10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15", "15:30", "16", "16:30", "17", "17:30", "18", "18:30"];
     //const horariosOcupados = [];
     //const horariosDisponiveis = [];
+    //console.log(barbeiro, telefone, horario, dia, cabelo, barba)
+    const data = dia + "T00:00:00.000+00:00"
 
     try{
         /* const horarios = await prisma.agendamento.findMany({
@@ -36,7 +38,7 @@ export async function agendamentoCreate (req, res) {
         const agendamento = await prisma.agendamento.create({
             data: {
                 horario,
-                dia,
+                dia: data,
                 cabelo,
                 barba,
                 clienteId: cliente.id,
