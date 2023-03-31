@@ -1,13 +1,25 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+function getFormattedDate() {
+    let date = new Date();
+    let day = date.getDate().toString().padStart(2, '0');
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let year = date.getFullYear();
+    let hora = (date.getHours()-3).toString().padStart(2, '0')
+    let min = date.getMinutes().toString().padStart(2, '0')
+    let seg = date.getSeconds().toString().padStart(2, '0')
+    
+    return `${year}-${month}-${day}`;
+}
+
 export async function agendamentoCreate (req, res) {
-    const {barbeiro, telefone, horario, dia, cabelo, barba} = req.body;
+    const {barbeiro, telefone, horario} = req.body;
     //const horariosFuncionamento = ["10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15", "15:30", "16", "16:30", "17", "17:30", "18", "18:30"];
     //const horariosOcupados = [];
     //const horariosDisponiveis = [];
-    console.log(barbeiro, telefone, horario, dia, cabelo, barba)
-    const data = dia + "T00:00:00.000+00:00"
+    
+    const data = getFormattedDate() + "T00:00:00.000+00:00"
 
     try{
         /* const horarios = await prisma.agendamento.findMany({
@@ -54,13 +66,13 @@ export async function agendamentoCreate (req, res) {
 }
 
 export async function agendamentoHorarios (req, res) {
-    const {barbeiro, dia } = req.body;
+    const {barbeiro } = req.body;
     const horariosFuncionamento = ["10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15", "15:30", "16", "16:30", "17", "17:30", "18", "18:30"];
     const horariosOcupados = [];
     const horariosDisponiveis = [];
 
-    const data = dia + "T00:00:00.000+00:00"
-    console.log(data)
+    const data = getFormattedDate() + "T00:00:00.000+00:00"
+    
     try{
         const horarios = await prisma.agendamento.findMany({
             where:{
@@ -77,7 +89,7 @@ export async function agendamentoHorarios (req, res) {
             }
         })
 
-        res.status(200).json({ horariosDisponiveis, error: false})
+        res.status(200).json({ horariosDisponiveis, error: false, dia: getFormattedDate()})
 
     } catch(err){
         console.log(err)
