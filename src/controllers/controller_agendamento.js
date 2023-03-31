@@ -3,12 +3,12 @@ const prisma = new PrismaClient()
 
 export async function agendamentoCreate (req, res) {
     const {barbeiro, telefone, horario, dia, cabelo, barba} = req.body;
-    const horariosFuncionamento = ["10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15", "15:30", "16", "16:30", "17", "17:30", "18", "18:30"];
-    const horariosOcupados = [];
-    const horariosDisponiveis = [];
+    //const horariosFuncionamento = ["10", "10:30", "11", "11:30", "12", "12:30", "13", "13:30", "14", "14:30", "15", "15:30", "16", "16:30", "17", "17:30", "18", "18:30"];
+    //const horariosOcupados = [];
+    //const horariosDisponiveis = [];
 
     try{
-        const horarios = await prisma.agendamento.findMany({
+        /* const horarios = await prisma.agendamento.findMany({
             where:{
                 barbeiroId: barbeiro || "64259992436c2ec0c05d7523",
                 dia: dia
@@ -26,7 +26,7 @@ export async function agendamentoCreate (req, res) {
 
         if(horariosOcupados.includes(horario)){
             return res.status(200).json({mensagem: "Horário Ocupado", erro: true})
-        }
+        } */
         
         const cliente = await prisma.cliente.findUnique({
             where:{
@@ -43,7 +43,7 @@ export async function agendamentoCreate (req, res) {
                 barbeiroId: barbeiro
             }
         })
-        res.status(200).json({ error: false})
+        res.status(200).json({ agendamento, error: false})
 
     } catch(err){
         console.log(err)
