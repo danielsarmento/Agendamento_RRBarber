@@ -39,8 +39,8 @@ export async function agendamentoCreate (req, res) {
             data: {
                 horario,
                 dia: data,
-                cabelo,
-                barba,
+                cabelo: true,
+                barba: true,
                 clienteId: cliente.id,
                 barbeiroId: barbeiro
             }
