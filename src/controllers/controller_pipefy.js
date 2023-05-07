@@ -19,7 +19,7 @@ export default async function createCard (req, res) {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
-                          'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjp7ImlkIjozMDIzOTY0NjgsImVtYWlsIjoiZGFuaWVsc2FybWVudG8xNEBnbWFpbC5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjQyNzk2fX0.uBliz1cfgrfzOgzHHNmKsqRnJtnUyJCTdvtPl83ZUiOD3qN-Rp9mHihysZ97d8TNgL9N9nAWXDL_GisWJmbeSA"
+                          'Authorization': "Bearer "
                         },
                         body: JSON.stringify({
                               "query": `mutation{ createCard (input: {pipe_id:${pipeId}  phase_id:${phaseId}  fields_attributes: [

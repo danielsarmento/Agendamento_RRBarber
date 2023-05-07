@@ -64,7 +64,7 @@ async function searchDate (){
     console.log(agendamentos)
 }
 
-//client("Daniel Sarmento", "danielsarmento2@hotmail.com", "5583999415087")
+//client("Daniel Sarmento", "danielsarmento2@hotmail.com", "")
 //barber("Wolney Morais")
 //schedule("15", "2023-03-31T00:00:00.000+00:00", true, false)
 //search()
